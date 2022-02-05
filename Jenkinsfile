@@ -21,6 +21,15 @@ pipeline {
         }
 
     }
+
+    stage('Source Composition Analysis'){
+        steps{
+            sh 'get https://raw.githubusercontent.com/fazcon/webapp/master/owasp-dependency-check.sh'
+            sh 'chmod +x owasp-dependency-check.sh'
+            sh 'bash owasp-dependency-check.sh'
+
+        }
+    }
     stage ('Build') {
       steps {
         sh 'mvn clean package' 
