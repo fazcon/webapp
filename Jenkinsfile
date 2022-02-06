@@ -28,6 +28,7 @@ pipeline {
             sh 'wget https://raw.githubusercontent.com/fazcon/webapp/master/owasp-dependency-check.sh'
             sh 'chmod +x owasp-dependency-check.sh'
             sh 'bash owasp-dependency-check.sh'
+            sh 'cat /var/lib/jenkins/workspace/webapp-cicd-pipeline/odc-reports/dependency-check-report.xml'
         }
     }
     stage ('Build') {
