@@ -31,6 +31,15 @@ pipeline {
             sh 'cat /var/lib/jenkins/workspace/webapp-cicd-pipeline/odc-reports/dependency-check-report.xml'
         }
     }
+
+    stage('SAST'){
+        steps {
+            withSonarQubeEnv('devsecops'){
+                sh 'mvn sonar:sonar'
+                sh 'cat target/sonar/report-task.txt'
+            }
+        }
+    }
     stage ('Build') {
       steps {
         sh 'mvn clean package' 
